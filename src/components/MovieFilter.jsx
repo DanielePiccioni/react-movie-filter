@@ -1,9 +1,18 @@
 import { movies } from "./MovieData";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function MovieFilter() {
     const [selectedGenre, setSelectedGenre] = useState('')
     const [filteredMovies, setFilteredMovies] = useState(movies)
+
+    useEffect(() => {
+        if (selectedGenre === '') {
+            setFilteredMovies(movies);
+        } else {
+            setFilteredMovies(movies.filter(movie => movie.genre === selectedGenre));
+        }
+    }, [selectedGenre])
+
 
     return (
         <div>
