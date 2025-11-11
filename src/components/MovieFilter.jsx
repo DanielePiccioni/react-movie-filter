@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 export default function MovieFilter() {
     const [selectedGenre, setSelectedGenre] = useState('')
+    const [filteredMovies, setFilteredMovies] = useState(movies)
 
     return (
         <div>
@@ -19,6 +20,14 @@ export default function MovieFilter() {
             </select>
 
             <p>Genere selezionato: {selectedGenre ? selectedGenre : 'Tutti'}</p>
+            <p>Film totali: {filteredMovies.length}</p>
+            <ul>
+                {filteredMovies.map((movie, index) => (
+                    <li key={index}>
+                        {movie.title} - <em>{movie.genre}</em>
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }
